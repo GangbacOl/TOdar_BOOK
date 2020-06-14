@@ -1,0 +1,25 @@
+{
+    "name": "TOdar_BOOK",
+    "version": "1.0.0",
+    "description": "TOdar_BOOK은 일정관리를 통해 책을 보다더 체계적으로  읽을 수 있도록 도와주는 서비스입니다.",
+    "main": "index.js",
+    "repository": "https://github.com/GangbacOl/TOdar_BOOK",
+    "author": "GangbacOl <gangyeonjo336@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "cookie-parser": "^1.4.5",
+        "cors": "^2.8.5",
+        "crypto": "^1.0.1",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "moment": "^2.25.0",
+        "mysql": "^2.18.1",
+        "mysql2": "^2.1.0",
+        "nodemon": "^2.0.3",
+        "sequelize": "^5.21.7"
+    },
+    "scripts": {
+        "start": "nodemon app.js"
+    }
+}
