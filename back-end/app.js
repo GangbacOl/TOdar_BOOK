@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/auth', require('./routes/auth/index'));
-// app.use('/post', require('./routes/post/'));
+app.use('/books', require('./routes/books/index'));
 
 models.sequelize
     .sync()
