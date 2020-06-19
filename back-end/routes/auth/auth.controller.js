@@ -11,10 +11,7 @@ exports.signup = (req, res) => {
             type: 'signup',
         });
     } else {
-        const encrypted = crypto
-            .createHmac('sha1', config.secret)
-            .update(password)
-            .digest('base64');
+        const encrypted = crypto.createHmac('sha1', config.secret).update(password).digest('base64');
         models.user
             .create({
                 account: id,
@@ -41,10 +38,7 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
     const { id, password } = req.body;
 
-    const encrypted = crypto
-        .createHmac('sha1', config.secret)
-        .update(password)
-        .digest('base64');
+    const encrypted = crypto.createHmac('sha1', config.secret).update(password).digest('base64');
 
     models.user
         .findOne({
