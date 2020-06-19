@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+
+.signin-wrapper, .signup-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.signin, .signup{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1400px;
+    margin: 100px auto;
+}
+
+.signin h1, .signup h1 {
+    font-weight: 100;
+    font-size: 4em;
+}
+
+.signin input, .signup input {
+    text-align: center;
+    width: 60%;
+    height: 50px;
+    margin: 20px 0;
+    font-size: 2em;
+    font-weight: 100;
+    border: none;
+    outline: none;
+}
+
+.signin input:focus, .signup input:focus{
+    -webkit-box-shadow: 3px 3px 10px -1px rgba(0,0,0,0.43);
+    -moz-box-shadow: 3px 3px 10px -1px rgba(0,0,0,0.43);
+    box-shadow: 3px 3px 10px -1px rgba(0,0,0,0.43);
+    transition: all 0.2s;
+}
+
+.signin input::placeholder, .signup input::placeholder {
+    text-align: center;
+}
+
+.signin a, .signup a {
+    font-size: 1.3em;
+    text-decoration: none;
+    color: black;
+    margin-top: 50px;
+}
+
+.signin a:hover, .signup a:hover{
+    text-decoration: underline;
+}
+
+.signin .submit, .signup .submit {
+    margin-top: 30px;
+    outline: none;
+    width:30%;
+    border: none;
+    background: none;
+    height: 40px;
+}
+
+.signin .submit:hover, .signup .submit:hover {
+    border-bottom: 1px solid black;
+    transition: 0.2s;
+}

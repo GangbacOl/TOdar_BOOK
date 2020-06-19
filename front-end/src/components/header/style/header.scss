@@ -1,0 +1,24 @@
+.header {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #262626;
+  color: white;
+  margin: 0;
+}
+
+.header h1 {
+  font-weight: 200;
+}
+
+.header div a {
+  margin: 15px;
+  text-decoration: none;
+  font-size: 1.1em;
+  color: white;
+}
+
+.header div a:hover {
+  text-decoration: underline;
+}
