@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { createStore, applyMiddleware } from "redux";
+import { createLogger } from "redux-logger";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Booklist } from "./components/book/list";
+import { Bestbook } from "./components/book/best";
+import AuthContainer from "./containers/AuthContainer";
+import UserContainer from "./containers/UserContainer";
+import { SignUp } from "./components/auth";
+
+import { Provider } from "react-redux";
+import setUserCfg from "./store/modules/user";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { PersistGate } from "redux-persist/integration/react";
+
+class Main extends Component {
+  render() {
+    const persistConfig = {
+      key: "root",
+      storage,
+    };
+    const enhancedReducer = persistReducer(persistConfig, setUserCfg);
+    const logger = createLogger();
+    const store = createStore(enhancedReducer, applyMiddleware(logger));
+    const persistor = persistStore(store);
+
+    return (
+      <BrowserRouter>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <Switch>
+              <Route exact path="/" component={UserContainer} />
+              <Route exact path="/booklist" component={Booklist} />
+              <Route exact path="/bestbook" component={Bestbook} />
+              <Route exact path="/signin" component={AuthContainer} />
+              <Route exact path="/signup" component={SignUp} />
+            </Switch>
+          </PersistGate>
+        </Provider>
+      </BrowserRouter>
+    );
+  }
 }
 
-export default App;
+export default Main;
