@@ -3,10 +3,10 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 
-import { Booklist } from "./components/book/list";
+import BookContainer from "./containers/BookContainer";
 import { Bestbook } from "./components/book/best";
 import AuthContainer from "./containers/AuthContainer";
-import UserContainer from "./containers/UserContainer";
+import MainContainer from "./containers/MainContainer";
 import { SignUp } from "./components/auth";
 
 import { Provider } from "react-redux";
@@ -31,8 +31,8 @@ class Main extends Component {
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <Switch>
-              <Route exact path="/" component={UserContainer} />
-              <Route exact path="/booklist" component={Booklist} />
+              <Route exact path="/" component={MainContainer} />
+              <Route exact path="/booklist" component={BookContainer} />
               <Route exact path="/bestbook" component={Bestbook} />
               <Route exact path="/signin" component={AuthContainer} />
               <Route exact path="/signup" component={SignUp} />
