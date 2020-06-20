@@ -27,3 +27,16 @@ exports.addBook = (req, res) => {
         }
     }
 };
+
+exports.readBooks = (req, res) => {
+    const { username } = req.body;
+    models.users_books
+        .findAll({
+            where: { username },
+        })
+        .then((response) => {
+            res.json({
+                response,
+            });
+        });
+};
