@@ -4,28 +4,25 @@ import axios from "axios";
 const BookList = ({ username }) => {
   const [books, setBooks] = useState([]);
   useEffect(() => {
-    axios.post("http://localhost:5000/books/read", { username }).then((res) => setBooks(res.data.response));
+    axios.post("http://localhost:5000/books/read", { username }).then((res) => setBooks(res.data.booksInfo.items));
   }, [username]);
-  console.log(books[0]);
-  const searchBookByIsbn = (isbn) => {
-    axios
-      .get(`https://openapi.naver.com/v1/search/book_adv.xml?d_isbn=${isbn}`, {
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          "X-Naver-Client-Id": "iB8LdjGuHwSuDU_5ZR6Q",
-          "X-Naver-Client-Secret": "Bno7XltwqA",
-        },
-      })
-      .then((res) => console.log(res));
-  };
-  // axios.get(`https://openapi.naver.com/v1/search/book_adv.xml?d_isbn=${books[0].isbn}`).then((res) => console.log(res));
+  console.log(books);
   return (
     <div className="BookList">
       <ul>
         {books.map((book) => (
-          <div key={book.id}>
-            <h2>{searchBookByIsbn(book.isbn)}</h2>
-            <span>{book.amount_read}</span>
+          <div key={book.isbn}>
+            <h2>{book.title}</h2>
+            <span>
+              저자: <b>{book.author}</b>
+            </span>
+            <br />
+            <span>
+              {" "}
+              출판사: <b>{book.publisher}</b>
+            </span>
+            <br />
+            <img src={book.image} alt="" />
           </div>
         ))}
       </ul>
