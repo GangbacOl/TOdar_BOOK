@@ -38,7 +38,7 @@ function SignUp() {
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          type="text"
+          type="password"
           placeholder="비밀번호를 입력해주세요."
           name="password"
           onChange={(e) => setPassword(e.target.value)}
