@@ -1,5 +1,5 @@
 import React from "react";
-import ProgressBar from "react-bootstrap/ProgressBar";
+import { ProgressBar } from "react-bootstrap";
 
 const Book = ({ isbn, title, author, publisher, percentage, image }) => {
   return (
