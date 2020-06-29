@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import "./style/searchItem.scss";
+import getTableOfContents from "../../middlewares/getTableContents";
 
 function SearchingItem({ title, author, contents, thumbnail, isbn, username }) {
   const addBook = (isbn, percentage = 0, username) => {
+    const tableOfContents = getTableOfContents();
     axios
-      .post("http://localhost:5000/books/add", { isbn, percentage, username })
+      .post("http://localhost:5000/books/add", { isbn, percentage, username, tableOfContents })
       .then((res) => {
         console.log(res);
       })
