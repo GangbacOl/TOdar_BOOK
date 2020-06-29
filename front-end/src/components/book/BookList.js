@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ErrorPage from "../../error/error";
-import Book from "./book";
+import ErrorPage from "../error/ErrorPage";
+import Book from "./Book";
+import ReadingBook from "./ReadingBook";
 
 const BookList = ({ username }) => {
   const [books, setBooks] = useState([]);
@@ -14,8 +15,7 @@ const BookList = ({ username }) => {
         setBooks(res.data.booksInfo.items);
         setIsLogin(true);
       })
-      .catch((err, { response }) => {
-        console.log(err);
+      .catch(({ response }) => {
         if (response.status === 401) {
           setErrorContent({ statusText: response.statusText, errorMessage: response.data.message });
           setIsLogin(false);
