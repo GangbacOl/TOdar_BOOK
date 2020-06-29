@@ -24,6 +24,9 @@ exports.readBooks = async (req, res) => {
     let response = await models.users_books.findAll({
         where: { username },
     });
+    let tableOfContents = await models.books_table_of_contents.findAll({
+        where: { username },
+    });
     const booksInfo = await new Promise(async (resolve, reject) => {
         let booksInfo = { items: [] };
         let data = await Promise.all(
@@ -38,17 +41,19 @@ exports.readBooks = async (req, res) => {
     });
     res.status(200).json({
         booksInfo,
+        tableOfContents,
     });
 };
 
 exports.addBook = (req, res) => {
     authMiddleware(req, res);
-    const { isbn, username, percentage } = req.body;
+    const { isbn, username, percentage, tableOfContents } = req.body;
     if (!isbn || !username) {
         res.status(403).json({
-            message: '책 추가 실패(책 정보 미기입)',
+            message: '책 추가 실패',
         });
     }
+    console.log(tableOfContents);
     models.users_books
         .create({
             isbn,
@@ -57,9 +62,18 @@ exports.addBook = (req, res) => {
         })
         .catch((err) => {
             console.log(err);
-            res.json({
+            res.status(403).json({
                 message: '책 추가 실패',
-                err,
             });
+        });
+    models.books_table_of_contents
+        .create({
+            isbn,
+            username,
+            table_of_contents: tableOfContents,
+        })
+        .then((response) => console.log(response))
+        .catch((err) => {
+            console.log(err);
         });
 };
