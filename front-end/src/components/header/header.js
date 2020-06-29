@@ -11,12 +11,11 @@ const Header = ({ username, initializeState }) => {
     initializeState();
     window.location.reload(false);
   };
-  console.log(username);
   return (
     <div className="header">
       <h1>TODAR BOOK</h1>
       <div>
-        <a href="/booklist">내 책</a>
+        <a href="/book">내 책</a>
         <a href="/bestbook">베스트 셀러</a>
         {checkIsLogin() ? (
           <div>

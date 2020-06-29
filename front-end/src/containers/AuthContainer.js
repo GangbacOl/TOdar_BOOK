@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import Signin from "../components/auth/signin";
+import SignIn from "../components/auth/SignIn";
 import { setUsername } from "../store/modules/user";
 
 const AuthContainer = ({ setUsername, username }) => {
-  return <Signin username={username} setUsername={setUsername} />;
+  return <SignIn username={username} setUsername={setUsername} />;
 };
 
 const mapStateToProps = ({ username }) => ({

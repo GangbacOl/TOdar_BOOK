@@ -4,10 +4,9 @@ import { createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 
 import BookContainer from "./containers/BookContainer";
-import { Bestbook } from "./components/book/best";
 import AuthContainer from "./containers/AuthContainer";
 import MainContainer from "./containers/MainContainer";
-import { SignUp } from "./components/auth";
+import SignUp from "./components/auth/SignUp";
 
 import { Provider } from "react-redux";
 import setUserCfg from "./store/modules/user";
@@ -32,8 +31,7 @@ class Main extends Component {
           <PersistGate loading={null} persistor={persistor}>
             <Switch>
               <Route exact path="/" component={MainContainer} />
-              <Route exact path="/booklist" component={BookContainer} />
-              <Route exact path="/bestbook" component={Bestbook} />
+              <Route exact path="/book" component={BookContainer} />
               <Route exact path="/signin" component={AuthContainer} />
               <Route exact path="/signup" component={SignUp} />
             </Switch>

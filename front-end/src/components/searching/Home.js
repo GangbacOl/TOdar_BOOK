@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import SearchItem from "./searchItem";
-import Header from "../header/header";
-import "./style/search_stylesheet.scss";
+import SearchingItem from "./SearchingItem";
+import Header from "../header/Header";
+import "./style/home.scss";
 
 const _apiKey = "830abcdf4f4174ae428b50d1997d5167";
 
@@ -23,7 +23,6 @@ const Home = ({ username, initializeState }) => {
           Authorization: `KakaoAK ${_apiKey}`,
         },
       });
-      console.log(documents);
       setBooks(documents);
       setIsEmpty(false);
     }
@@ -61,7 +60,7 @@ const Home = ({ username, initializeState }) => {
             books.map((book) => {
               if (checkIsNull(book)) {
                 return (
-                  <SearchItem
+                  <SearchingItem
                     title={book.title}
                     author={book.authors}
                     contents={book.contents}
