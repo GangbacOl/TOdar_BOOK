@@ -16,6 +16,7 @@ const Book = ({ isbn, title, author, publisher, percentage, image }) => {
       <ProgressBar now={percentage} label={`${percentage}%`} />
       <br />
       <img src={image} alt="" />
+      <a href="/read/book">체크하러 가기</a>
     </div>
   );
 };
