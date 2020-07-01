@@ -12,7 +12,8 @@ const BookList = ({ username }) => {
     axios
       .post("http://localhost:5000/books/read", { username }, { withCredentials: true })
       .then((res) => {
-        setBooks(res.data.booksInfo.items);
+        console.log(res);
+        setBooks(res.data);
         setIsLogin(true);
       })
       .catch(({ response }) => {
@@ -22,11 +23,12 @@ const BookList = ({ username }) => {
         }
       });
   }, [username]);
+  console.log(books);
   return (
     <div className="BookList">
       {isLogin ? (
         <div>
-          {books.map((book) => (
+          {books.booksInfo.items.map((book) => (
             <Book
               isbn={book.isbn}
               title={book.title}
@@ -34,6 +36,7 @@ const BookList = ({ username }) => {
               publisher={book.publisher}
               percentage={book.amount_read}
               image={book.image}
+              // tableOfContents={books.data.tableOfContents}
               key={book.isbn}
             />
           ))}

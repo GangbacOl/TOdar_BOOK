@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const axios = require('axios');
 const models = require('../../models');
 const authMiddleware = require('../../middlewares/auth/auth');
-
 const searchBookByIsbn = (item) => {
     return axios
         .get(`https://openapi.naver.com/v1/search/book_adv.json?d_isbn=${item.isbn}`, {
@@ -14,35 +13,43 @@ const searchBookByIsbn = (item) => {
         })
         .then((res) => {
             res.data.items[0].amount_read = item.dataValues.amount_read;
+            // res.data.items[0].tableOfContents =v
             return res;
+        })
+        .catch((err) => {
+            console.log(err);
         });
 };
 
 exports.readBooks = async (req, res) => {
     authMiddleware(req, res);
     const { username } = req.body;
-    let response = await models.users_books.findAll({
-        where: { username },
-    });
-    let tableOfContents = await models.books_table_of_contents.findAll({
-        where: { username },
-    });
-    const booksInfo = await new Promise(async (resolve, reject) => {
-        let booksInfo = { items: [] };
-        let data = await Promise.all(
-            response.map((item) => {
-                return searchBookByIsbn(item);
-            })
-        );
-        data.forEach((book) => {
-            booksInfo.items.push(book.data.items[0]);
+    try {
+        let response = await models.users_books.findAll({
+            where: { username },
         });
-        resolve(booksInfo);
-    });
-    res.status(200).json({
-        booksInfo,
-        tableOfContents,
-    });
+        const booksInfo = await new Promise(async (resolve, reject) => {
+            let booksInfo = { items: [] };
+            let data = await Promise.all(
+                response.map((item) => {
+                    return searchBookByIsbn(item);
+                })
+            );
+            data.forEach((book) => {
+                booksInfo.items.push(book.data.items[0]);
+            });
+            resolve(booksInfo);
+        });
+        console.log(booksInfo);
+        res.status(200).json({
+            booksInfo,
+        });
+    } catch (err) {
+        console.log(err);
+    }
+    // let tableOfContents = await models.books_table_of_contents.findAll({
+    //     where: { username },
+    // });
 };
 
 exports.addBook = (req, res) => {
