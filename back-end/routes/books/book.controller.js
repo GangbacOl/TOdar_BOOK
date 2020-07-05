@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const axios = require('axios');
 const models = require('../../models/index');
 const authMiddleware = require('../../middlewares/auth/auth');
+
 const searchBookByIsbn = (item) => {
     return axios
         .get(`https://openapi.naver.com/v1/search/book_adv.json?d_isbn=${item.isbn}`, {
@@ -11,9 +12,11 @@ const searchBookByIsbn = (item) => {
                 'X-Naver-Client-Secret': 'Bno7XltwqA',
             },
         })
-        .then((res) => {
-            res.data.items[0].amount_read = item.dataValues.amount_read;
-            return res;
+        .then((response) => {
+            response.data.items[0].amount_read = item.dataValues.amount_read;
+            response.data.items[0].tableOfContents =
+                item.dataValues.books_table_of_content.dataValues.table_of_contents;
+            return response;
         })
         .catch((err) => {
             console.log(err);
@@ -33,9 +36,6 @@ exports.readBooks = async (req, res) => {
                     where: { username },
                 },
             ],
-        });
-        response.forEach((data) => {
-            console.log(data);
         });
 
         const booksInfo = await new Promise(async (resolve, reject) => {
@@ -93,4 +93,16 @@ exports.addBook = (req, res) => {
         .catch((err) => {
             console.log(err);
         });
+};
+
+exports.updateBooksTableContents = async (req, res) => {
+    authMiddleware(req, res);
+    const { newTableOfContents, percentage, isbn, username } = req.body;
+    await models.books_table_of_contents.update(
+        { table_of_contents: newTableOfContents },
+        { where: { isbn, username } }
+    );
+    await models.users_books.update({ amount_read: percentage }, { where: { isbn, username } });
+    res.status(200).json({ message: '업데이트 성공' });
+    console.log('percentage: ' + percentage);
 };
