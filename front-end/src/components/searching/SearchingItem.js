@@ -7,7 +7,11 @@ function SearchingItem({ title, author, contents, thumbnail, isbn, username }) {
   const addBook = (isbn, percentage = 0, username) => {
     const tableOfContents = getTableOfContents();
     axios
-      .post("http://localhost:5000/books/add", { isbn, percentage, username, tableOfContents })
+      .post(
+        "http://localhost:5000/books/add",
+        { isbn, percentage, username, tableOfContents },
+        { withCredentials: true }
+      )
       .then((res) => {
         console.log(res);
       })
