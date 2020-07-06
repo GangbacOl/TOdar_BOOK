@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { ProgressBar } from "react-bootstrap";
+import ReadingBook from "./ReadingBook";
 
-const Book = ({ isbn, title, author, publisher, percentage, image, tableOfContents }) => {
+const Book = ({ isbn, title, author, publisher, percentage, image, tableOfContents, username }) => {
   const [showTableContents, setShowTableContents] = useState(false);
-  const onClick = () => setShowTableContents(true);
-  // console.log(tableOfContents);
+  const onClick = () => setShowTableContents(!showTableContents);
   return (
-    <div key={isbn}>
+    <div>
       <div>
         <h2>{title}</h2>
         <span>
@@ -20,11 +20,13 @@ const Book = ({ isbn, title, author, publisher, percentage, image, tableOfConten
         <ProgressBar now={percentage} label={`${percentage}%`} />
         <br />
         <img src={image} alt="" />
-        <a href="/book/read" onClick={onClick}>
-          체크하러 가기
-        </a>
+        {showTableContents ? (
+          <input type="button" value="닫기" onClick={onClick} />
+        ) : (
+          <input type="button" value="체크하러 가기" onClick={onClick} />
+        )}
       </div>
-      {/* {showTableContents ? } */}
+      {showTableContents ? <ReadingBook tableOfContents={tableOfContents} isbn={isbn} username={username} /> : null}
     </div>
   );
 };
