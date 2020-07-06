@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ErrorPage from "../error/ErrorPage";
 import Book from "./Book";
-import ReadingBook from "./ReadingBook";
 
 const BookList = ({ username }) => {
   const [books, setBooks] = useState([]);
@@ -12,7 +11,6 @@ const BookList = ({ username }) => {
     axios
       .post("http://localhost:5000/books/read", { username }, { withCredentials: true })
       .then((res) => {
-        console.log(res);
         setBooks(res.data);
         setIsLogin(true);
       })
@@ -23,7 +21,6 @@ const BookList = ({ username }) => {
         }
       });
   }, [username]);
-  console.log(books);
   return (
     <div className="BookList">
       {isLogin ? (
@@ -36,8 +33,9 @@ const BookList = ({ username }) => {
               publisher={book.publisher}
               percentage={book.amount_read}
               image={book.image}
-              // tableOfContents={books.data.tableOfContents}
+              tableOfContents={book.tableOfContents}
               key={book.isbn}
+              username={username}
             />
           ))}
         </div>
