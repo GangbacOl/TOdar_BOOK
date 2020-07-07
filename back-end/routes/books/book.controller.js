@@ -98,11 +98,27 @@ exports.addBook = (req, res) => {
 exports.updateBooksTableContents = async (req, res) => {
     authMiddleware(req, res);
     const { newTableOfContents, percentage, isbn, username } = req.body;
-    await models.books_table_of_contents.update(
-        { table_of_contents: newTableOfContents },
-        { where: { isbn, username } }
-    );
-    await models.users_books.update({ amount_read: percentage }, { where: { isbn, username } });
+    if (percentage >= 100) {
+        await models.users_books.destroy({ where: { isbn, username } });
+        await models.books_table_of_contents.destroy({ where: { isbn, username } });
+        await models.record_books_you_read
+            .create({ isbn, username })
+            .then((response) => console.log(response))
+            .catch((err) => console.log(err));
+    } else {
+        await models.books_table_of_contents.update(
+            { table_of_contents: newTableOfContents },
+            { where: { isbn, username } }
+        );
+        await models.users_books.update({ amount_read: percentage }, { where: { isbn, username } });
+    }
     res.status(200).json({ message: '업데이트 성공' });
-    console.log('percentage: ' + percentage);
+};
+
+exports.deleteBook = async (req, res) => {
+    authMiddleware(req, res);
+    const { isbn, username } = req.body;
+    await models.users_books.destroy({ where: { isbn, username } });
+    await models.books_table_of_contents.destroy({ where: { isbn, username } });
+    res.status(200).json({ message: '삭제 성공' });
 };
