@@ -122,3 +122,10 @@ exports.deleteBook = async (req, res) => {
     await models.books_table_of_contents.destroy({ where: { isbn, username } });
     res.status(200).json({ message: '삭제 성공' });
 };
+
+exports.loadBooksRead = (req, res) => {
+    authMiddleware(req, res);
+    const username = req.params.username;
+    console.log(username);
+    // await models.record_books_you_read.findAll({where:{}})
+};
