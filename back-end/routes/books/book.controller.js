@@ -123,9 +123,13 @@ exports.deleteBook = async (req, res) => {
     res.status(200).json({ message: '삭제 성공' });
 };
 
-exports.loadBooksRead = (req, res) => {
+exports.loadBooksRead = async (req, res) => {
     authMiddleware(req, res);
-    const username = req.params.username;
-    console.log(username);
-    // await models.record_books_you_read.findAll({where:{}})
+    const username = req.query.username;
+    const response = await models.record_books_you_read.findAll({ where: { username } }).then((response) => {
+        response.map((item) => {
+            console.log(searchBookByIsbn(item.dataValues.isbn));
+        });
+    });
+    res.status(200).json({ message: '조회 성공', booksRead: response });
 };
