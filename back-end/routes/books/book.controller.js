@@ -3,31 +3,31 @@ const axios = require('axios');
 const models = require('../../models/index');
 const authMiddleware = require('../../middlewares/auth/auth');
 
-const searchBookByIsbn = (item) => {
-    return axios
-        .get(`https://openapi.naver.com/v1/search/book_adv.json?d_isbn=${item.isbn}`, {
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8',
-                'X-Naver-Client-Id': 'iB8LdjGuHwSuDU_5ZR6Q',
-                'X-Naver-Client-Secret': 'Bno7XltwqA',
-            },
+const searchBookByIsbn = async (booksInfo) => {
+    var a = [];
+    return await Promise.all(
+        booksInfo.map(async (book) => {
+            return await axios
+                .get(`https://openapi.naver.com/v1/search/book_adv.json?d_isbn=${book.dataValues.isbn}`, {
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8',
+                        'X-Naver-Client-Id': 'iB8LdjGuHwSuDU_5ZR6Q',
+                        'X-Naver-Client-Secret': 'Bno7XltwqA',
+                    },
+                })
+                .then((response) => {
+                    return response.data.items[0];
+                })
+                .catch((err) => console.log(err));
         })
-        .then((response) => {
-            response.data.items[0].amount_read = item.dataValues.amount_read;
-            response.data.items[0].tableOfContents =
-                item.dataValues.books_table_of_content.dataValues.table_of_contents;
-            return response;
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    );
 };
 
 exports.readBooks = async (req, res) => {
     authMiddleware(req, res);
     const { username } = req.body;
-    try {
-        let response = await models.users_books.findAll({
+    const response = await models.users_books
+        .findAll({
             where: { username },
             include: [
                 {
@@ -36,29 +36,13 @@ exports.readBooks = async (req, res) => {
                     where: { username },
                 },
             ],
+        })
+        .then(async (booksInfo) => {
+            return await searchBookByIsbn(booksInfo);
         });
-
-        const booksInfo = await new Promise(async (resolve, reject) => {
-            let booksInfo = { items: [] };
-            let data = await Promise.all(
-                response.map((item) => {
-                    return searchBookByIsbn(item);
-                })
-            );
-            data.forEach((book) => {
-                booksInfo.items.push(book.data.items[0]);
-            });
-            resolve(booksInfo);
-        });
-        // console.log(booksInfo);
-        res.status(200).json({
-            booksInfo,
-        });
-    } catch (err) {
-        console.log(err);
-    }
-    let tableOfContents = await models.books_table_of_contents.findAll({
-        where: { username },
+    console.log(response);
+    res.status(200).json({
+        booksRead: response,
     });
 };
 
@@ -126,10 +110,8 @@ exports.deleteBook = async (req, res) => {
 exports.loadBooksRead = async (req, res) => {
     authMiddleware(req, res);
     const username = req.query.username;
-    const response = await models.record_books_you_read.findAll({ where: { username } }).then((response) => {
-        response.map((item) => {
-            console.log(searchBookByIsbn(item.dataValues.isbn));
-        });
+    const response = await models.record_books_you_read.findAll({ where: { username } }).then(async (booksInfo) => {
+        return await searchBookByIsbn(booksInfo);
     });
     res.status(200).json({ message: '조회 성공', booksRead: response });
 };
