@@ -7,6 +7,7 @@ import BookContainer from "./containers/BookContainer";
 import AuthContainer from "./containers/AuthContainer";
 import MainContainer from "./containers/MainContainer";
 import SignUp from "./components/auth/SignUp";
+import BooksReadContainer from "./containers/BooksReadContainer";
 
 import { Provider } from "react-redux";
 import setUserCfg from "./store/modules/user";
@@ -15,31 +16,32 @@ import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 
 class Main extends Component {
-  render() {
-    const persistConfig = {
-      key: "root",
-      storage,
-    };
-    const enhancedReducer = persistReducer(persistConfig, setUserCfg);
-    const logger = createLogger();
-    const store = createStore(enhancedReducer, applyMiddleware(logger));
-    const persistor = persistStore(store);
+    render() {
+        const persistConfig = {
+            key: "root",
+            storage,
+        };
+        const enhancedReducer = persistReducer(persistConfig, setUserCfg);
+        const logger = createLogger();
+        const store = createStore(enhancedReducer, applyMiddleware(logger));
+        const persistor = persistStore(store);
 
-    return (
-      <BrowserRouter>
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <Switch>
-              <Route exact path="/" component={MainContainer} />
-              <Route exact path="/book" component={BookContainer} />
-              <Route exact path="/signin" component={AuthContainer} />
-              <Route exact path="/signup" component={SignUp} />
-            </Switch>
-          </PersistGate>
-        </Provider>
-      </BrowserRouter>
-    );
-  }
+        return (
+            <BrowserRouter>
+                <Provider store={store}>
+                    <PersistGate loading={null} persistor={persistor}>
+                        <Switch>
+                            <Route exact path="/" component={MainContainer} />
+                            <Route exact path="/book" component={BookContainer} />
+                            <Route exact path="/signin" component={AuthContainer} />
+                            <Route exact path="/signup" component={SignUp} />
+                            <Route exact paht="/booksRead" component={BooksReadContainer} />
+                        </Switch>
+                    </PersistGate>
+                </Provider>
+            </BrowserRouter>
+        );
+    }
 }
 
 export default Main;
