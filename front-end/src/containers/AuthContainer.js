@@ -4,11 +4,11 @@ import SignIn from "../components/auth/SignIn";
 import { setUsername } from "../store/modules/user";
 
 const AuthContainer = ({ setUsername, username }) => {
-  return <SignIn username={username} setUsername={setUsername} />;
+    return <SignIn username={username} setUsername={setUsername} />;
 };
 
 const mapStateToProps = ({ username }) => ({
-  username,
+    username,
 });
 
 const mapDispatchToProps = { setUsername };

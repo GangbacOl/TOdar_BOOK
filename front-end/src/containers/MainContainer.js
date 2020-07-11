@@ -4,11 +4,11 @@ import Home from "../components/searching/Home";
 import { initializeState } from "../store/modules/user";
 
 const MainContainer = ({ username, initializeState }) => {
-  return <Home username={username} initializeState={initializeState} />;
+    return <Home username={username} initializeState={initializeState} />;
 };
 
 const mapStateToProps = ({ username }) => ({
-  username,
+    username,
 });
 
 const mapDispatchToProps = { initializeState };
