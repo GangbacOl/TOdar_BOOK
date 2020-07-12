@@ -1,20 +1,23 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
+import axios from "axios";
 import "./style.scss";
-import Axios from "axios";
 
 function SignUp() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const history = useHistory();
 
     const signUp = (username, id, password) => {
-        Axios.post("http://localhost:5000/auth/signup", {
-            username,
-            id,
-            password,
-        })
+        axios
+            .post("http://localhost:5000/auth/signup", {
+                username,
+                id,
+                password,
+            })
             .then((response) => {
-                window.location.href = response.data.redirectUrl;
+                history.push("/");
             })
             .catch((error) => {
                 console.log(error);
@@ -32,9 +35,7 @@ function SignUp() {
                     type="button"
                     className="submit"
                     value="submit"
-                    onClick={() => {
-                        signUp(username, email, password);
-                    }}
+                    onClick={() => signUp(username, email, password)}
                     onKeyDown={(e) => {
                         if (e.keyCode === 13) signUp(username, email, password);
                     }}

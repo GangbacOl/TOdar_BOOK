@@ -5,16 +5,16 @@ import ReadingBook from "./ReadingBook";
 
 const Book = ({ isbn, title, author, publisher, percentage, image, tableOfContents, username }) => {
     const [showTableContents, setShowTableContents] = useState(false);
+
     const showContents = () => setShowTableContents(!showTableContents);
+
     const cancelRead = (isbn, username) => {
-        axios
-            .delete("http://localhost:5000/books/delete", { data: { isbn, username }, withCredentials: true })
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err));
+        axios.delete("http://localhost:5000/books/delete", { data: { isbn, username }, withCredentials: true }).catch((err) => console.log(err));
         window.location.reload();
     };
+
     return (
-        <div>
+        <div className="Book">
             <div>
                 <h2>{title}</h2>
                 <span>

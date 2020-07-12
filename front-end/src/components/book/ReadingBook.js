@@ -22,11 +22,9 @@ const ReadingBook = ({ tableOfContents, isbn, username }) => {
         });
 
         const percentage = setReadPercentage(newTableOfContents);
-        console.log(percentage);
         await axios
             .post("http://localhost:5000/books/update", { newTableOfContents, percentage, isbn, username }, { withCredentials: true })
-            .then((res) => console.log(res));
-
+            .catch((err) => console.log(err));
         window.location.reload();
     };
 
@@ -41,7 +39,7 @@ const ReadingBook = ({ tableOfContents, isbn, username }) => {
     };
 
     return (
-        <div>
+        <div className="ReadingBook">
             <h1>Table of contents</h1>
             {tableOfContents.contents.map((item, index) => (
                 <div key={index}>

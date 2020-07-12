@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import Axios from "axios";
+import axios from "axios";
 import "./style.scss";
 
-const SignIn = ({ setUsername, username }) => {
+const SignIn = ({ setIsLogin, setUsername, username }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory();
 
     const signIn = (id, password) => {
-        Axios.post(
-            "http://localhost:5000/auth/signin",
-            {
-                id,
-                password,
-            },
-            { withCredentials: true }
-        )
+        axios
+            .post(
+                "http://localhost:5000/auth/signin",
+                {
+                    id,
+                    password,
+                },
+                { withCredentials: true }
+            )
             .then((res) => {
                 setUsername(res.data.userData.username);
+                setIsLogin(true);
                 history.push("/");
             })
             .catch((err) => {
@@ -40,14 +42,7 @@ const SignIn = ({ setUsername, username }) => {
                         if (e.keyCode === 13) signIn(email, password);
                     }}
                 />
-                <input
-                    type="button"
-                    className="submit"
-                    value="submit"
-                    onClick={() => {
-                        signIn(email, password);
-                    }}
-                />
+                <input type="button" className="submit" value="submit" onClick={() => signIn(email, password)} />
                 <a href="/signup">TODAR BOOK이 처음이세요?</a>
                 <a href="/">메인메뉴로 돌아가기</a>
             </div>

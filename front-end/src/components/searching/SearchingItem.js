@@ -1,16 +1,14 @@
 import React from "react";
 import axios from "axios";
-import "./style/searchItem.scss";
 import getTableOfContents from "../../middlewares/getTableContents";
+import "./style/searchItem.scss";
 
-function SearchingItem({ title, author, contents, thumbnail, isbn, username }) {
-    const addBook = (isbn, percentage = 0, username) => {
+const SearchingItem = ({ isLogin, title, author, contents, thumbnail, isbn, username }) => {
+    const addBook = (isbn, percentage, username) => {
         const tableOfContents = getTableOfContents();
+
         axios
             .post("http://localhost:5000/books/add", { isbn, percentage, username, tableOfContents }, { withCredentials: true })
-            .then((res) => {
-                console.log(res);
-            })
             .catch(({ response }) => {
                 if (response.status === 401) console.log("로그인을 먼저 하세요.");
             });
@@ -22,13 +20,7 @@ function SearchingItem({ title, author, contents, thumbnail, isbn, username }) {
                 <div className="text">
                     <h3>{title}</h3>
                     <div className="button-wrapper">
-                        <input
-                            type="button"
-                            value="Pick"
-                            onClick={() => {
-                                addBook(isbn, undefined, username);
-                            }}
-                        />
+                        {isLogin ? <input type="button" value="Pick" onClick={() => addBook(isbn, 0, username)} /> : null}
                     </div>
                     <span>저자: {author[0]}</span>
                     <br />
@@ -37,6 +29,6 @@ function SearchingItem({ title, author, contents, thumbnail, isbn, username }) {
             </div>
         </div>
     );
-}
+};
 
 export default SearchingItem;

@@ -4,12 +4,12 @@ import SearchingItem from "./SearchingItem";
 import Header from "../header/Header";
 import "./style/home.scss";
 
-const _apiKey = "830abcdf4f4174ae428b50d1997d5167";
-
-const Home = ({ username, initializeState }) => {
+const Home = ({ setIsLogin, isLogin, initializeState, username }) => {
     const [title, setTitle] = useState("");
     const [books, setBooks] = useState([]);
     const [isEmpty, setIsEmpty] = useState(true);
+
+    const _apiKey = "830abcdf4f4174ae428b50d1997d5167";
 
     let SearchingBookTitle = async (title) => {
         if (title === "") {
@@ -29,16 +29,13 @@ const Home = ({ username, initializeState }) => {
     };
 
     const checkIsNull = (book) => {
-        if (book.title === "") return false;
-        if (book.author === "") return false;
-        if (book.contents === "") return false;
-        if (book.thumbnail === "") return false;
+        if (book.title === "" || book.author === "" || book.contents === "" || book.thumbnail === "") return false;
         return true;
     };
 
     return (
         <div className="search-wrapper">
-            <Header username={username} initializeState={initializeState} />
+            <Header setIsLogin={setIsLogin} isLogin={isLogin} initializeState={initializeState} username={username} />
             <div className="Searching">
                 <div className="SearchSide">
                     <input
@@ -61,6 +58,7 @@ const Home = ({ username, initializeState }) => {
                             if (checkIsNull(book)) {
                                 return (
                                     <SearchingItem
+                                        isLogin={isLogin}
                                         title={book.title}
                                         author={book.authors}
                                         contents={book.contents}
