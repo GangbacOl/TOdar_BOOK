@@ -4,7 +4,6 @@ const models = require('../../models/index');
 const authMiddleware = require('../../middlewares/auth/auth');
 
 const searchBookByIsbn = async (booksInfo) => {
-    var a = [];
     return await Promise.all(
         booksInfo.map(async (book) => {
             return await axios
@@ -25,7 +24,7 @@ const searchBookByIsbn = async (booksInfo) => {
 
 exports.readBooks = async (req, res) => {
     authMiddleware(req, res);
-    const { username } = req.body;
+    const { username } = req.query;
     const response = await models.users_books
         .findAll({
             where: { username },
@@ -37,8 +36,13 @@ exports.readBooks = async (req, res) => {
                 },
             ],
         })
-        .then(async (booksInfo) => {
-            return await searchBookByIsbn(booksInfo);
+        .then(async (response) => {
+            let bookList = await searchBookByIsbn(response);
+            bookList.map((book, index) => {
+                book.percentage = response[index].dataValues.amount_read;
+                book.tableOfContents = response[index].books_table_of_content.dataValues.table_of_contents;
+            });
+            return bookList;
         });
     console.log(response);
     res.status(200).json({
@@ -54,7 +58,6 @@ exports.addBook = (req, res) => {
             message: '책 추가 실패',
         });
     }
-    console.log(tableOfContents);
     models.users_books
         .create({
             isbn,
@@ -62,7 +65,6 @@ exports.addBook = (req, res) => {
             username,
         })
         .catch((err) => {
-            console.log(err);
             res.status(403).json({
                 message: '책 추가 실패',
             });
@@ -73,7 +75,6 @@ exports.addBook = (req, res) => {
             username,
             table_of_contents: tableOfContents,
         })
-        .then((response) => console.log(response))
         .catch((err) => {
             console.log(err);
         });
@@ -82,13 +83,11 @@ exports.addBook = (req, res) => {
 exports.updateBooksTableContents = async (req, res) => {
     authMiddleware(req, res);
     const { newTableOfContents, percentage, isbn, username } = req.body;
+    console.log(percentage);
     if (percentage >= 100) {
         await models.users_books.destroy({ where: { isbn, username } });
         await models.books_table_of_contents.destroy({ where: { isbn, username } });
-        await models.record_books_you_read
-            .create({ isbn, username })
-            .then((response) => console.log(response))
-            .catch((err) => console.log(err));
+        await models.record_books_you_read.create({ isbn, username }).catch((err) => console.log(err));
     } else {
         await models.books_table_of_contents.update(
             { table_of_contents: newTableOfContents },
