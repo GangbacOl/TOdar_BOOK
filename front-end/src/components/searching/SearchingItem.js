@@ -14,8 +14,8 @@ const SearchingItem = ({ isLogin, title, author, contents, thumbnail, isbn, user
             });
     };
     return (
-        <div className="item-wrapper">
-            <div className="container">
+        <div className="SearchingItem">
+            <div className="Searching-container">
                 <img src={thumbnail} alt="not found" />
                 <div className="text">
                     <h3>{title}</h3>

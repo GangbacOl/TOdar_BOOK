@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap");
 
-.container {
+.Searching-container {
     z-index: 0;
     position: relative;
     display: flex;
@@ -14,12 +14,12 @@
     box-shadow: 3px 3px 10px -1px rgba(0, 0, 0, 0.43);
 }
 
-.container img {
+.Searching-container img {
     margin-right: 30px;
     margin-top: -40px;
 }
 
-.container button:first-child() {
+.Searching-container button:first-child() {
     all: unset;
     font-size: 0.8em;
     font-weight: inherit;
@@ -29,7 +29,7 @@
     margin: 7px;
 }
 
-.container button:last-child() {
+.Searching-container button:last-child() {
     all: unset;
     font-size: 0.8em;
     font-weight: inherit;
@@ -39,18 +39,18 @@
     margin: 7px;
 }
 
-.container button:hover {
+.Searching-container button:hover {
     text-decoration: underline;
 }
 
-.container h3 {
+.Searching-container h3 {
     margin: 5px 10px;
 }
 
-.container span {
+.Searching-container span {
     font-size: 0.9em;
 }
 
-.container p {
+.Searching-container p {
     font-size: 0.8em;
 }
