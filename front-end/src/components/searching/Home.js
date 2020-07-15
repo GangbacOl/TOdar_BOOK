@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import SearchingItem from "./SearchingItem";
 import Header from "../header/Header";
+import config from "../config";
 import "./style/home.scss";
 
 const Home = ({ setIsLogin, isLogin, initializeState, username }) => {
@@ -9,9 +10,7 @@ const Home = ({ setIsLogin, isLogin, initializeState, username }) => {
     const [books, setBooks] = useState([]);
     const [isEmpty, setIsEmpty] = useState(true);
 
-    const _apiKey = "830abcdf4f4174ae428b50d1997d5167";
-
-    let SearchingBookTitle = async (title) => {
+    const searchBookTitle = async (title) => {
         if (title === "") {
             setIsEmpty(true);
         } else {
@@ -20,7 +19,7 @@ const Home = ({ setIsLogin, isLogin, initializeState, username }) => {
             } = await axios.get(`https://dapi.kakao.com/v3/search/book?query=${title}`, {
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
-                    Authorization: `KakaoAK ${_apiKey}`,
+                    Authorization: `KakaoAK ${config.apiKey}`,
                 },
             });
             setBooks(documents);
@@ -44,11 +43,11 @@ const Home = ({ setIsLogin, isLogin, initializeState, username }) => {
                         placeholder="책제목을 입력하세요."
                         onChange={(e) => setTitle(e.target.value)}
                         onKeyDown={(e) => {
-                            if (e.keyCode === 13) SearchingBookTitle(title);
+                            if (e.keyCode === 13) searchBookTitle(title);
                         }}
                         value={title}
                     />
-                    <input className="SearchBtn" type="button" value="검색" onClick={() => SearchingBookTitle(title)} />
+                    <input className="SearchBtn" type="button" value="검색" onClick={() => searchBookTitle(title)} />
                 </div>
                 <div className="SearchList">
                     {isEmpty ? (
@@ -60,7 +59,7 @@ const Home = ({ setIsLogin, isLogin, initializeState, username }) => {
                                     <SearchingItem
                                         isLogin={isLogin}
                                         title={book.title}
-                                        author={book.authors}
+                                        author={book.authors[0]}
                                         contents={book.contents}
                                         thumbnail={book.thumbnail}
                                         isbn={book.isbn}

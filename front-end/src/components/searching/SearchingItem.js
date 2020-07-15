@@ -22,7 +22,7 @@ const SearchingItem = ({ isLogin, title, author, contents, thumbnail, isbn, user
                     <div className="button-wrapper">
                         {isLogin ? <input type="button" value="Pick" onClick={() => addBook(isbn, 0, username)} /> : null}
                     </div>
-                    <span>저자: {author[0]}</span>
+                    <span>저자: {author}</span>
                     <br />
                     <p>{contents.slice(0, 100)}...</p>
                 </div>
