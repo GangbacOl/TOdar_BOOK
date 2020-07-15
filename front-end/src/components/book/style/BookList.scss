@@ -1,0 +1,17 @@
+.BookList {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.booklist-container-first,
+.booklist-container-second {
+    width: 100%;
+}
+
+.booklist-container-second {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

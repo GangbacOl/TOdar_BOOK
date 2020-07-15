@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Loader from "react-loader-spinner";
 import { useHistory } from "react-router";
 import ErrorPage from "../error/ErrorPage";
 import Book from "./Book";
+import "./style/BookList.scss";
 
 const BookList = ({ username, isLogin }) => {
     const [books, setBooks] = useState([]);
@@ -28,23 +28,26 @@ const BookList = ({ username, isLogin }) => {
     return (
         <div className="BookList">
             {isLoading ? (
-                <Loader type="Oval" color="#000000" height="50" width="50" />
+                <p>Loading...</p>
             ) : isLogin ? (
-                <div>
+                <div className="booklist-container-first">
                     <input type="button" onClick={() => history.push("/")} value="메인으로" />
-                    {books.map((book) => (
-                        <Book
-                            isbn={book.isbn}
-                            title={book.title}
-                            author={book.author}
-                            publisher={book.publisher}
-                            percentage={book.percentage}
-                            image={book.image}
-                            tableOfContents={book.tableOfContents}
-                            key={book.isbn}
-                            username={username}
-                        />
-                    ))}
+                    <div className="booklist-container-second">
+                        {books.map((book) => (
+                            <Book
+                                isbn={book.isbn}
+                                title={book.title}
+                                author={book.authors[0]}
+                                contents={book.contents}
+                                publisher={book.publisher}
+                                percentage={book.percentage}
+                                image={book.thumbnail}
+                                tableOfContents={book.tableOfContents}
+                                key={book.isbn}
+                                username={username}
+                            />
+                        ))}
+                    </div>
                 </div>
             ) : (
                 <ErrorPage
