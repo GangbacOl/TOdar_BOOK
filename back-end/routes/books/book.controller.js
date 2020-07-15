@@ -2,20 +2,21 @@ const jwt = require('jsonwebtoken');
 const axios = require('axios');
 const models = require('../../models/index');
 const authMiddleware = require('../../middlewares/auth/auth');
+const config = require('../config');
 
 const searchBookByIsbn = async (booksInfo) => {
     return await Promise.all(
         booksInfo.map(async (book) => {
+            let isbn = book.dataValues.isbn.split(' ');
             return await axios
-                .get(`https://openapi.naver.com/v1/search/book_adv.json?d_isbn=${book.dataValues.isbn}`, {
+                .get(`https://dapi.kakao.com/v3/search/book?query=${isbn[0]}&target=isbn`, {
                     headers: {
                         'Content-Type': 'application/json; charset=utf-8',
-                        'X-Naver-Client-Id': 'iB8LdjGuHwSuDU_5ZR6Q',
-                        'X-Naver-Client-Secret': 'Bno7XltwqA',
+                        Authorization: `KakaoAK ${config.apiKey}`,
                     },
                 })
                 .then((response) => {
-                    return response.data.items[0];
+                    return response.data.documents[0];
                 })
                 .catch((err) => console.log(err));
         })
