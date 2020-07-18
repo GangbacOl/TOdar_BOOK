@@ -9,6 +9,16 @@
     width: 100%;
 }
 
+.booklist-container-first > input {
+    all: unset;
+    margin: 10px;
+    font-weight: 400;
+    font-size: 1.3em;
+}
+.booklist-container-first > input:hover {
+    text-decoration: underline;
+}
+
 .booklist-container-second {
     display: flex;
     flex-direction: column;
