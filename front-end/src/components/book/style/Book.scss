@@ -1,6 +1,5 @@
 .Book {
     margin: 10px 20px;
-    padding: 10px;
     width: 60%;
     min-width: 350px;
     transition: all 0.3s;
@@ -14,6 +13,7 @@
 
 .book-container {
     width: 100%;
+    padding: 10px;
     max-height: 500px;
 }
 
@@ -24,6 +24,7 @@
 
 .book-container .main-contents {
     display: flex;
+    margin-bottom: 10px;
 }
 
 .book-container .main-contents img {
@@ -54,6 +55,10 @@
     background: black;
     color: white;
     border: 1px solid white;
+}
+
+.progress {
+    background: white !important;
 }
 
 @media all and (max-width: 600px) {
