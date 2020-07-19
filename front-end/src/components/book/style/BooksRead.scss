@@ -1,0 +1,21 @@
+.BooksRead {
+    width: 100%;
+    height: 100%;
+}
+
+.booksread-container-first > input {
+    all: unset;
+    margin: 10px;
+    font-weight: 400;
+    font-size: 1.3em;
+}
+.booksread-container-first > input:hover {
+    text-decoration: underline;
+}
+
+.booksread-container-second {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 600px;
+}

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Loader from "react-loader-spinner";
 import { useHistory } from "react-router";
 import BookRead from "./BookRead";
 import ErrorPage from "../error/ErrorPage";
+import "./style/BooksRead.scss";
 
 const BooksRead = ({ username, isLogin }) => {
     const [books, setBooks] = useState([]);
@@ -34,13 +34,24 @@ const BooksRead = ({ username, isLogin }) => {
     return (
         <div className="BooksRead">
             {isLoading ? (
-                <Loader type="Oval" color="#000000" height="50" width="50" />
+                <p>Loading...</p>
             ) : isLogin ? (
-                <div>
+                <div className="booksread-container-first">
                     <input type="button" onClick={() => history.push("/")} value="메인으로" />
-                    {books.map((book) => {
-                        return <BookRead thumbnail={book.image} author={book.author} title={book.title} key={book.isbn} />;
-                    })}
+                    <div className="booksread-container-second">
+                        {books.map((book) => {
+                            return (
+                                <BookRead
+                                    thumbnail={book.thumbnail}
+                                    author={book.authors[0]}
+                                    title={book.title}
+                                    startOfRead={book.startOfRead}
+                                    finishOfRead={book.finishOfRead}
+                                    key={book.isbn}
+                                />
+                            );
+                        })}
+                    </div>
                 </div>
             ) : (
                 <ErrorPage
