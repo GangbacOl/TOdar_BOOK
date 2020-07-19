@@ -16,6 +16,9 @@ if (config.use_env_variable) {
         host: 'localhost',
         port: 3306,
         dialect: 'mysql',
+        dialectOptions: { charset: 'utf8mb4', dateStrings: true, typeCast: true },
+        timezone: '+09:00',
+        define: { timestamps: true },
     });
 }
 
