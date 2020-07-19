@@ -3,9 +3,8 @@ import axios from "axios";
 import { ProgressBar } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
-// import ReadingBook from "./ReadingBook";
 import "./style/Book.scss";
-import "./style/ReadingBook.scss";
+import "./style/ReadingBookModal.scss";
 
 const ReadingBookModal = ({ showModal, handleClose, tableOfContents, title, isbn, username }) => {
     useEffect(() => {
@@ -78,12 +77,10 @@ const ReadingBookModal = ({ showModal, handleClose, tableOfContents, title, isbn
 const Book = ({ isbn, title, author, contents, publisher, percentage, image, tableOfContents, username }) => {
     const [showModal, setShowModal] = useState(false);
 
-    console.log("start: " + showModal);
     const sliceTitle = (title) => {
         let newTitle = title.split("(");
         return newTitle[0];
     };
-
     return (
         <div className="Book">
             <div className="book-container" onClick={() => setShowModal(true)}>
