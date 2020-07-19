@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import axios from "axios";
 import "./style.scss";
 
-function SignUp() {
+const SignUp = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,10 +17,10 @@ function SignUp() {
                 password,
             })
             .then((response) => {
-                history.push("/");
+                history.push("/signin");
             })
             .catch((error) => {
-                console.log(error);
+                alert(error.response.data.message);
             });
     };
 
@@ -30,21 +30,21 @@ function SignUp() {
                 <h1>TODAR BOOK</h1>
                 <input type="text" placeholder="닉네임을 입력해주세요." name="username" onChange={(e) => setUsername(e.target.value)} />
                 <input type="text" placeholder="계정을 입력해주세요." name="account" onChange={(e) => setEmail(e.target.value)} />
-                <input type="password" placeholder="비밀번호를 입력해주세요." name="password" onChange={(e) => setPassword(e.target.value)} />
                 <input
-                    type="button"
-                    className="submit"
-                    value="submit"
-                    onClick={() => signUp(username, email, password)}
+                    type="password"
+                    placeholder="비밀번호를 입력해주세요."
+                    name="password"
+                    onChange={(e) => setPassword(e.target.value)}
                     onKeyDown={(e) => {
                         if (e.keyCode === 13) signUp(username, email, password);
                     }}
                 />
+                <input type="button" className="submit" value="submit" onClick={() => signUp(username, email, password)} />
                 <a href="/signin">로그인하러 가기</a>
                 <a href="/">메인메뉴로 돌아가기</a>
             </div>
         </div>
     );
-}
+};
 
 export default SignUp;
