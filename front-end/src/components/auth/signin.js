@@ -24,7 +24,7 @@ const SignIn = ({ setIsLogin, setUsername, username }) => {
                 history.push("/");
             })
             .catch((err) => {
-                console.log(err);
+                alert(err.response.data.message);
             });
     };
 
