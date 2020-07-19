@@ -37,11 +37,11 @@ exports.readBooks = async (req, res) => {
                 },
             ],
         })
-        .then(async (response) => {
-            let bookList = await searchBookByIsbn(response);
+        .then(async (booksInfo) => {
+            let bookList = await searchBookByIsbn(booksInfo);
             bookList.map((book, index) => {
-                book.percentage = response[index].dataValues.amount_read;
-                book.tableOfContents = response[index].books_table_of_content.dataValues.table_of_contents;
+                book.percentage = booksInfo[index].dataValues.amount_read;
+                book.tableOfContents = booksInfo[index].books_table_of_content.dataValues.table_of_contents;
             });
             return bookList;
         });
@@ -86,9 +86,18 @@ exports.updateBooksTableContents = async (req, res) => {
     const { newTableOfContents, percentage, isbn, username } = req.body;
     console.log(percentage);
     if (percentage >= 100) {
+        let startOfRead = await models.users_books
+            .findAll({ attributes: ['createdAt'] }, { where: { username, isbn } })
+            .then((bookInfo) => {
+                console.log(bookInfo[0]);
+                return bookInfo[0].dataValues.createdAt;
+            });
+        console.log(startOfRead);
         await models.users_books.destroy({ where: { isbn, username } });
         await models.books_table_of_contents.destroy({ where: { isbn, username } });
-        await models.record_books_you_read.create({ isbn, username }).catch((err) => console.log(err));
+        await models.record_books_you_read
+            .create({ isbn, username, date_start_read: startOfRead })
+            .catch((err) => console.log(err));
     } else {
         await models.books_table_of_contents.update(
             { table_of_contents: newTableOfContents },
@@ -111,7 +120,12 @@ exports.loadBooksRead = async (req, res) => {
     authMiddleware(req, res);
     const username = req.query.username;
     const response = await models.record_books_you_read.findAll({ where: { username } }).then(async (booksInfo) => {
-        return await searchBookByIsbn(booksInfo);
+        let bookList = await searchBookByIsbn(booksInfo);
+        bookList.map((book, index) => {
+            book.startOfRead = booksInfo[index].dataValues.date_start_read;
+            book.finishOfRead = booksInfo[index].dataValues.createdAt;
+        });
+        return bookList;
     });
     res.status(200).json({ message: '조회 성공', booksRead: response });
 };
