@@ -1,13 +1,22 @@
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
+const passwordValidator = require('password-validator');
 const models = require('../../models');
 const config = require('../config');
+
+const schema = new passwordValidator();
+schema.is().min(8).is().max(50).has().uppercase().has().lowercase().has().digits().has().not().spaces();
 
 exports.signup = (req, res) => {
     const { id, password, username } = req.body;
     if (!id || !password || !username) {
         res.status(400).json({
             message: '회원가입 실패(회원 정보 미기입)',
+        });
+    } else if (schema.validate(password)) {
+        res.status(400).json({
+            message:
+                '비밀번호는 최소 8자리, 최대 50자리이며 대문자와 소문자, 숫자가 포함되어야 하며 공백은 허용되지 않음',
         });
     } else {
         const encrypted = crypto.createHmac('sha1', config.secret).update(password).digest('base64');
