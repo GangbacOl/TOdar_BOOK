@@ -10,6 +10,10 @@ module.exports = (sequelize, DataType) => {
                 type: DataType.STRING(100),
                 allowNull: false,
             },
+            date_start_read: {
+                type: DataType.DATE,
+                allowNull: false,
+            },
         },
         {
             classMethods: {},
