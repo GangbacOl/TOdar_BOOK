@@ -19,11 +19,8 @@ const SearchingItem = ({ isLogin, title, author, contents, thumbnail, isbn, user
                 <img src={thumbnail} alt="not found" />
                 <div className="text">
                     <h3>{title}</h3>
-                    <div className="button-wrapper">
-                        {isLogin ? <input type="button" value="Pick" onClick={() => addBook(isbn, 0, username)} /> : null}
-                    </div>
                     <span>저자: {author}</span>
-                    <br />
+                    {isLogin ? <input type="button" value="pick" onClick={() => addBook(isbn, 0, username)} /> : null}
                     <p>{contents.slice(0, 100)}...</p>
                 </div>
             </div>

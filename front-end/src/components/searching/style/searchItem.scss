@@ -19,30 +19,6 @@
     margin-top: -40px;
 }
 
-.Searching-container button:first-child() {
-    all: unset;
-    font-size: 0.8em;
-    font-weight: inherit;
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin: 7px;
-}
-
-.Searching-container button:last-child() {
-    all: unset;
-    font-size: 0.8em;
-    font-weight: inherit;
-    position: absolute;
-    right: 0;
-    top: 20px;
-    margin: 7px;
-}
-
-.Searching-container button:hover {
-    text-decoration: underline;
-}
-
 .Searching-container h3 {
     margin: 5px 10px;
 }
@@ -53,4 +29,21 @@
 
 .Searching-container p {
     font-size: 0.8em;
+}
+
+.Searching-container input {
+    position: absolute;
+    bottom: -25px;
+    right: -20px;
+    margin: 10px;
+    background: white;
+    font-size: 0.9em;
+    width: 70px;
+    height: 30px;
+    outline: none;
+}
+
+.Searching-container input:active {
+    background: black;
+    color: white;
 }
