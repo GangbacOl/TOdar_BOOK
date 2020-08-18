@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import SignIn from "../components/auth/SignIn";
+import SignIn from "../components/auth/Signin";
 import { setUsername, setIsLogin } from "../store/modules/user";
 
 const AuthContainer = ({ setIsLogin, setUsername, username }) => {

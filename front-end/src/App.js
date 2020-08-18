@@ -5,7 +5,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import BookContainer from "./containers/BookContainer";
 import AuthContainer from "./containers/AuthContainer";
 import MainContainer from "./containers/MainContainer";
-import SignUp from "./components/auth/SignUp";
+import SignUp from "./components/auth/Signup";
 import BooksReadContainer from "./containers/BooksReadContainer";
 import configureStore from "./store/modules/index";
 
