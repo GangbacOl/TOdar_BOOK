@@ -59,17 +59,6 @@ exports.addBook = (req, res) => {
             message: '책 추가 실패',
         });
     }
-    models.users_books
-        .create({
-            isbn,
-            amount_read: percentage,
-            username,
-        })
-        .catch((err) => {
-            res.status(403).json({
-                message: '책 추가 실패',
-            });
-        });
     models.books_table_of_contents
         .create({
             isbn,
@@ -79,6 +68,16 @@ exports.addBook = (req, res) => {
         .catch((err) => {
             console.log(err);
         });
+    models.users_books
+        .create({
+            isbn,
+            amount_read: percentage,
+            username,
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    res.status(200).json({ message: '책 추가 성공' });
 };
 
 exports.updateBooksTableContents = async (req, res) => {
