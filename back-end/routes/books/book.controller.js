@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const axios = require('axios');
 const models = require('../../models/index');
-const authMiddleware = require('../../middlewares/auth/auth');
+const { authMiddleware, getDays } = require('../../middlewares/middlewares');
 const config = require('../config');
 
 const searchBookByIsbn = async (booksInfo) => {
@@ -53,7 +53,9 @@ exports.readBooks = async (req, res) => {
 
 exports.addBook = (req, res) => {
     authMiddleware(req, res);
-    const { isbn, username, percentage, tableOfContents } = req.body;
+    const { isbn, username, percentage, tableOfContents, daysInMonth } = req.body;
+    const amountReadMonth = getDays(daysInMonth);
+
     if (!isbn || !username) {
         res.status(403).json({
             message: '책 추가 실패',
@@ -72,6 +74,7 @@ exports.addBook = (req, res) => {
         .create({
             isbn,
             amount_read: percentage,
+            amount_read_month: amountReadMonth,
             username,
         })
         .catch((err) => {
