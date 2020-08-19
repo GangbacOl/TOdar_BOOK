@@ -10,4 +10,12 @@ const authMiddleware = (req, res) => {
     }
 };
 
-module.exports = authMiddleware;
+const getDays = (days) => {
+    let daysData = [];
+    for (let i = 0; i < days; i++) {
+        daysData.push({ readCount: 0 });
+    }
+    return daysData;
+};
+
+module.exports = { authMiddleware, getDays };
