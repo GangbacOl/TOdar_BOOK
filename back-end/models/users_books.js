@@ -10,6 +10,10 @@ module.exports = (sequelize, DataType) => {
                 type: DataType.INTEGER(45),
                 allowNull: false,
             },
+            amount_read_month: {
+                type: DataType.JSON,
+                allowNull: false,
+            },
             username: {
                 type: DataType.STRING(100),
                 allowNull: false,
