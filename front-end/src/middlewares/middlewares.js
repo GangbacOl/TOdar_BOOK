@@ -1,3 +1,10 @@
+const getDaysInMonth = () => {
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    return new Date(year, month, 0).getDate();
+};
+
 const getTableOfContents = () => {
     return {
         contents: [
@@ -65,4 +72,4 @@ const getTableOfContents = () => {
     };
 };
 
-export default getTableOfContents;
+export { getDaysInMonth, getTableOfContents };
