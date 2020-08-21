@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import Home from "../components/searching/Home";
+import MainPage from "../pages/MainPage";
 import { setIsLogin, initializeState } from "../store/modules/user";
 
 const MainContainer = ({ setIsLogin, isLogin, initializeState, username }) => {
-    return <Home setIsLogin={setIsLogin} isLogin={isLogin} username={username} initializeState={initializeState} />;
+    return <MainPage setIsLogin={setIsLogin} isLogin={isLogin} username={username} initializeState={initializeState} />;
 };
 
 const mapStateToProps = ({ username, isLogin }) => ({
