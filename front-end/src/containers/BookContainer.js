@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import BookList from "../components/book/BookList";
+import BookPage from "../pages/BookPage";
 
 const BookContainer = ({ username, isLogin }) => {
-    return <BookList username={username} isLogin={isLogin} />;
+    return <BookPage username={username} isLogin={isLogin} />;
 };
 
 const mapStateToProps = ({ username, isLogin }) => ({
