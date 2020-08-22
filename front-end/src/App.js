@@ -5,8 +5,8 @@ import { PersistGate } from "redux-persist/integration/react";
 import BookContainer from "./containers/BookContainer";
 import AuthContainer from "./containers/AuthContainer";
 import MainContainer from "./containers/MainContainer";
-import SignUp from "./components/auth/Signup";
-import BooksReadContainer from "./containers/BooksReadContainer";
+import RegisterPage from "./pages/RegisterPage";
+import InfoContainer from "./containers/InfoContainer";
 import configureStore from "./store/modules/index";
 
 class Main extends Component {
@@ -19,9 +19,9 @@ class Main extends Component {
                         <Switch>
                             <Route exact path="/" component={MainContainer} />
                             <Route exact path="/book" component={BookContainer} />
-                            <Route exact path="/signin" component={AuthContainer} />
-                            <Route exact path="/signup" component={SignUp} />
-                            <Route exact paht="/booksRead" component={BooksReadContainer} />
+                            <Route exact path="/login" component={AuthContainer} />
+                            <Route exact path="/register" component={RegisterPage} />
+                            <Route exact paht="/booksRead" component={InfoContainer} />
                         </Switch>
                     </PersistGate>
                 </Provider>
