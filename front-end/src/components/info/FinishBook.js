@@ -1,13 +1,13 @@
 import React from "react";
-import "./style/BookRead.scss";
+import "./style/FinishBook.scss";
 
-const BookRead = ({ thumbnail, author, title, startOfRead, finishOfRead }) => {
+const FinishBook = ({ thumbnail, author, title, startOfRead, finishOfRead }) => {
     const sliceTitle = (title) => {
         let newTitle = title.split("(");
         return newTitle[0];
     };
     return (
-        <div className="BookRead">
+        <div className="FinishBook">
             <h3>{sliceTitle(title)}</h3>
             <img src={thumbnail} alt="" />
             <span>저자: {author}</span>
@@ -19,10 +19,10 @@ const BookRead = ({ thumbnail, author, title, startOfRead, finishOfRead }) => {
                 <div>
                     <span>다 읽은 날짜 </span>
                     <span>{finishOfRead.slice(0, 10) + " " + finishOfRead.slice(11, 19)}</span>
-                </div>{" "}
+                </div>
             </div>
         </div>
     );
 };
 
-export default BookRead;
+export default FinishBook;
