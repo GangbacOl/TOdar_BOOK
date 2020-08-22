@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/header/Header";
+import Header from "../components/common/Header";
 import SearchingArea from "../components/search/SearchingArea";
 
 const MainPage = ({ setIsLogin, isLogin, initializeState, username }) => {
