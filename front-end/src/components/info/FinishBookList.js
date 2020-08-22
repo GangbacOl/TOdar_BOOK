@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { useHistory } from "react-router";
-import BookRead from "./BookRead";
+import FinishBook from "./FinishBook";
 import ErrorPage from "../error/ErrorPage";
-import "./style/BooksRead.scss";
+import "./style/FinishBookList.scss";
 
-const BooksRead = ({ username, isLogin }) => {
+const FinishBookList = ({ username, isLogin }) => {
     const [books, setBooks] = useState([]);
     const [errorContent, setErrorContent] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-    const history = useHistory();
 
     useEffect(() => {
         axios
@@ -32,16 +31,16 @@ const BooksRead = ({ username, isLogin }) => {
     }, [username]);
 
     return (
-        <div className="BooksRead">
+        <div className="FinishBookList">
             {isLoading ? (
                 <p>Loading...</p>
             ) : isLogin ? (
-                <div className="booksread-container-first">
-                    <input type="button" onClick={() => history.push("/")} value="메인으로" />
-                    <div className="booksread-container-second">
+                <div className="FinishBookListFirst">
+                    <Link to="/">메인으로</Link>
+                    <div className="FinishBookListSecond">
                         {books.map((book) => {
                             return (
-                                <BookRead
+                                <FinishBook
                                     thumbnail={book.thumbnail}
                                     author={book.authors[0]}
                                     title={book.title}
@@ -65,4 +64,4 @@ const BooksRead = ({ username, isLogin }) => {
     );
 };
 
-export default BooksRead;
+export default FinishBookList;
