@@ -1,14 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import SignIn from "../components/auth/Signin";
+import LoginPage from "../pages/LoginPage";
 import { setUsername, setIsLogin } from "../store/modules/user";
 
-const AuthContainer = ({ setIsLogin, setUsername, username }) => {
-    return <SignIn setIsLogin={setIsLogin} setUsername={setUsername} username={username} />;
+const AuthContainer = ({ setIsLogin, isLogin, setUsername, username }) => {
+    return <LoginPage setIsLogin={setIsLogin} isLogin={isLogin} setUsername={setUsername} username={username} />;
 };
 
-const mapStateToProps = ({ username }) => ({
+const mapStateToProps = ({ username, isLogin }) => ({
     username,
+    isLogin,
 });
 
 const mapDispatchToProps = { setUsername, setIsLogin };
