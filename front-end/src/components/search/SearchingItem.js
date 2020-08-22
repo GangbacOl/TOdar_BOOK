@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { getDaysInMonth, getTableOfContents } from "../../middlewares/middlewares";
-import "./style/searchItem.scss";
+import "./style/SearchingItem.scss";
 
 const SearchingItem = ({ isLogin, title, author, contents, thumbnail, isbn, username }) => {
     const addBook = (isbn, percentage, username) => {
@@ -16,7 +16,7 @@ const SearchingItem = ({ isLogin, title, author, contents, thumbnail, isbn, user
     };
     return (
         <div className="SearchingItem">
-            <div className="Searching-container">
+            <div className="SearchingContainer">
                 <img src={thumbnail} alt="not found" />
                 <div className="text">
                     <h3>{title}</h3>
