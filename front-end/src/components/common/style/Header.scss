@@ -1,4 +1,4 @@
-.header {
+.Header {
     height: 100px;
     display: flex;
     align-items: center;
@@ -8,28 +8,28 @@
     margin: 0;
 }
 
-.header h1 {
+.Header h1 {
     font-weight: 100;
     font-size: 2.1em;
 }
 
-.header div a {
+.Header div a {
     margin: 15px;
     text-decoration: none;
     font-size: 1.1em;
     color: white;
 }
 
-.header div a:hover {
+.Header div a:hover {
     text-decoration: underline;
 }
 
-.header div div input {
+.Header div div input {
     color: white;
     background: transparent;
     border-color: transparent;
 }
 
-.header div div input:hover {
+.Header div div input:hover {
     text-decoration: underline;
 }
