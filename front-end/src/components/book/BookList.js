@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { useHistory } from "react-router";
 import ErrorPage from "../error/ErrorPage";
 import Book from "./Book";
 import "./style/BookList.scss";
@@ -9,7 +9,6 @@ const BookList = ({ username, isLogin }) => {
     const [books, setBooks] = useState([]);
     const [errorContent, setErrorContent] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-    const history = useHistory();
 
     useEffect(() => {
         axios
@@ -31,7 +30,7 @@ const BookList = ({ username, isLogin }) => {
                 <p>Loading...</p>
             ) : isLogin ? (
                 <div className="booklist-container-first">
-                    <input type="button" onClick={() => history.push("/")} value="메인으로" />
+                    <Link to="/">메인으로</Link>
                     <div className="booklist-container-second">
                         {books.map((book) => (
                             <Book
