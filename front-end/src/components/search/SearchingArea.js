@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import SearchingItem from "../search/SearchingItem";
 import config from "../../config/config";
-import "./style/home.scss";
+import "./style/SearchingArea.scss";
 
 const SearchingArea = ({ isLogin, username }) => {
     const [title, setTitle] = useState("");
