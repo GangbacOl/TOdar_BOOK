@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 const axios = require('axios');
 const models = require('../../models/index');
 const { authMiddleware, getDays } = require('../../middlewares/middlewares');
@@ -130,4 +129,10 @@ exports.loadBooksRead = async (req, res) => {
         return bookList;
     });
     res.status(200).json({ message: '조회 성공', booksRead: response });
+};
+
+exports.countNmbrBooksRead = async (req, res) => {
+    await authMiddleware(req, res);
+    const { username } = req.body;
+    models.users_books.count({ where: { username } }).then((c) => res.status(200).json({ numberOfBooks: c }));
 };
