@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/auth', require('./routes/auth/index'));
 app.use('/books', require('./routes/books/index'));
+app.use('/user', require('./routes/user/index'));
 
 models.users_books.belongsTo(models.books_table_of_contents, { foreignKey: 'id' });
 
