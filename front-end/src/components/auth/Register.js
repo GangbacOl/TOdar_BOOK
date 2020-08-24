@@ -16,8 +16,8 @@ const Register = () => {
                 id,
                 password,
             })
-            .then((response) => {
-                history.push("/signin");
+            .then(() => {
+                history.push("/login");
             })
             .catch((error) => {
                 alert(error.response.data.message);
