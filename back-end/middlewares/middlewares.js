@@ -18,4 +18,11 @@ const getDays = (days) => {
     return daysData;
 };
 
-module.exports = { authMiddleware, getDays };
+const subDays = (date) => {
+    const oneDay = 1000 * 60 * 60 * 24;
+    const anotherDay = new Date(date);
+    const today = new Date();
+    return parseInt((today.getTime() - anotherDay.getTime()) / oneDay);
+};
+
+module.exports = { authMiddleware, getDays, subDays };
