@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import cookie from "react-cookies";
-import "./style/header.scss";
+import "./style/Header.scss";
 
 const Header = ({ setIsLogin, isLogin, initializeState, username }) => {
     const logout = () => {
