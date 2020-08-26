@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import { createLogger } from "redux-logger";
 import storage from "redux-persist/lib/storage";
-import setUserCfg from "./user";
+import setUserCfg from "./modules/user";
 
 const persistConfig = {
     key: "root",
