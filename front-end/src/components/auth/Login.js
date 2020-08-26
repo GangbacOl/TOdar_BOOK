@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
-import "./style.scss";
+import "./style/style.scss";
 
 const Login = ({ setIsLogin, isLogin, setUsername }) => {
     const [email, setEmail] = useState("");
