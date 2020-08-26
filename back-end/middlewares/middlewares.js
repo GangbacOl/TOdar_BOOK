@@ -8,14 +8,6 @@ const authMiddleware = (req, res) => {
     }
 };
 
-const getDays = (days) => {
-    let daysData = [];
-    for (let i = 0; i < days; i++) {
-        daysData.push({ readCount: 0 });
-    }
-    return daysData;
-};
-
 const subDays = (date) => {
     const oneDay = 1000 * 60 * 60 * 24;
     const anotherDay = new Date(date);
@@ -23,4 +15,4 @@ const subDays = (date) => {
     return parseInt((today.getTime() - anotherDay.getTime()) / oneDay);
 };
 
-module.exports = { authMiddleware, getDays, subDays };
+module.exports = { authMiddleware, subDays };
