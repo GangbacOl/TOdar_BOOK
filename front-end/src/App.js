@@ -7,7 +7,7 @@ import AuthContainer from "./containers/AuthContainer";
 import MainContainer from "./containers/MainContainer";
 import RegisterPage from "./pages/RegisterPage";
 import InfoContainer from "./containers/InfoContainer";
-import configureStore from "./store/modules/index";
+import configureStore from "./store/index";
 
 class Main extends Component {
     render() {
