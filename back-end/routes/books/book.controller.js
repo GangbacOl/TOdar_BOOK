@@ -134,6 +134,6 @@ exports.loadBooksRead = async (req, res) => {
 exports.countNmbrBooksRead = async (req, res) => {
     authMiddleware(req, res);
     const { username } = req.body;
-    const nmbrBooksRead = await models.users_books.count({ where: { username } });
+    const nmbrBooksRead = await models.record_books_you_read.count({ where: { username } });
     res.status(200).json({ nmbrBooksRead });
 };
