@@ -16,12 +16,12 @@ const MyInfo = ({ username }) => {
         <div className="MyInfo">
             <h1>{username}</h1>
             <hr />
-            <span>
+            <div>
                 읽은 책: <b>{nmbrBooksRead}권</b>
-            </span>
-            <span>
+            </div>
+            <div>
                 가입 일: <b>{nmbrJoinDays}일</b>
-            </span>
+            </div>
         </div>
     );
 };
