@@ -1,12 +1,10 @@
 import React from "react";
-import MyInfo from "../components/info/MyInfo";
-import FinishBookList from "../components/info/FinishBookList";
+import Info from "../components/info/Info";
 
 const InfoPage = ({ username, isLogin }) => {
     return (
         <div className="InfoPage">
-            <MyInfo username={username} />
-            <FinishBookList username={username} isLogin={isLogin} />
+            <Info username={username} isLogin={isLogin} />
         </div>
     );
 };
