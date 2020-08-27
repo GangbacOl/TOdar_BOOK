@@ -17,7 +17,7 @@ const Header = ({ setIsLogin, isLogin, initializeState, username }) => {
                 {isLogin ? (
                     <div>
                         <Link to="/book">내 책</Link>
-                        <Link to="/booksread">내 정보</Link>
+                        <Link to="/infomation">내 정보</Link>
                         <div>
                             <span>{username}님, 안녕하세요</span>
                             <input type="button" value="로그아웃" onClick={() => logout()} />
