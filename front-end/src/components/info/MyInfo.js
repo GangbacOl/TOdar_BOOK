@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./style/MyInfo.scss";
 
 const MyInfo = ({ username }) => {
     const [nmbrBooksRead, setNumberOfBooks] = useState(0);
