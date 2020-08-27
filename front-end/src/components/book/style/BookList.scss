@@ -19,9 +19,27 @@
     text-decoration: underline;
 }
 
+.booklist-container-first > a {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    color: black;
+    font-size: 1.4em;
+}
+
+.booklist-container-first > a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
 .booklist-container-second {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.booklist-container-second > p {
+    font-size: 1.4em;
+    margin-top: 70px;
 }
