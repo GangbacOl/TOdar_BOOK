@@ -1,0 +1,17 @@
+.Info {
+    display: flex;
+    flex-direction: column;
+}
+
+.Info > a {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    color: black;
+    font-size: 1.4em;
+}
+
+.Info > a:hover {
+    color: black;
+    text-decoration: underline;
+}
