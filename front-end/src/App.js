@@ -21,7 +21,7 @@ class Main extends Component {
                             <Route exact path="/book" component={BookContainer} />
                             <Route exact path="/login" component={AuthContainer} />
                             <Route exact path="/register" component={RegisterPage} />
-                            <Route exact paht="/booksRead" component={InfoContainer} />
+                            <Route exact paht="/infomation" component={InfoContainer} />
                         </Switch>
                     </PersistGate>
                 </Provider>
