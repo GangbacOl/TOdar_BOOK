@@ -1,15 +1,14 @@
 import React from "react";
 import axios from "axios";
-import { getDaysInMonth, getTableOfContents } from "../../middlewares/middlewares";
+import { getTableOfContents } from "../../middlewares/middlewares";
 import "./style/SearchingItem.scss";
 
 const SearchingItem = ({ isLogin, title, author, contents, thumbnail, isbn, username }) => {
     const addBook = (isbn, percentage, username) => {
         const tableOfContents = getTableOfContents();
-        const daysInMonth = getDaysInMonth();
 
         axios
-            .post("http://localhost:5000/books/add", { isbn, percentage, username, tableOfContents, daysInMonth }, { withCredentials: true })
+            .post("http://localhost:5000/books/add", { isbn, percentage, username, tableOfContents }, { withCredentials: true })
             .catch(({ response }) => {
                 if (response.status === 401) console.log("로그인을 먼저 하세요.");
             });
