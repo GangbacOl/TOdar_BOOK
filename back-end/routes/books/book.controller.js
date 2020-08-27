@@ -52,7 +52,7 @@ exports.readBooks = async (req, res) => {
 
 exports.addBook = (req, res) => {
     authMiddleware(req, res);
-    const { isbn, username, percentage, tableOfContents, daysInMonth } = req.body;
+    const { isbn, username, percentage, tableOfContents } = req.body;
 
     if (!isbn || !username) {
         res.status(403).json({
@@ -83,7 +83,7 @@ exports.addBook = (req, res) => {
 exports.updateBooksTableContents = async (req, res) => {
     authMiddleware(req, res);
     const { newTableOfContents, percentage, isbn, username } = req.body;
-    console.log(percentage);
+    console.log(newTableOfContents);
     if (percentage >= 100) {
         let startOfRead = await models.users_books
             .findAll({ attributes: ['createdAt'] }, { where: { username, isbn } })
