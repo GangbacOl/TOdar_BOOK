@@ -1,4 +1,4 @@
-# TOdar_BOOK 만드려는 기능
+# todar-book에서 필요한 기능
 
 - 책 정보(제목, 저자, 썸네일, 줄거리) 조회 ⭕️
 - 읽고 싶은 책 추가 ⭕️
@@ -10,17 +10,16 @@
 - 독서록 기능 구현 ❌
 - 읽은 목차들을 달력 뷰로 구현 ❌
 
-# TOdar_BOOK에서 사용한 기술
+# todar-book에서 사용한 기술
 
-- **프론트엔드** 🌈
+- **프론트엔드**
   - React.js
     - Redux
     - Bootstrap
-- **백엔드** 🌨
+- **백엔드**
   - Node.js
     - Express.js
     - Sequelize
     - jwt(JSON Web Token)
-- **데이터베이스** 📂
+- **데이터베이스**
   - MySQL
-
