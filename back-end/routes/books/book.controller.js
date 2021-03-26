@@ -11,7 +11,7 @@ const searchBookByIsbn = async (booksInfo) => {
                 .get(`https://dapi.kakao.com/v3/search/book?query=${isbn[0]}&target=isbn`, {
                     headers: {
                         'Content-Type': 'application/json; charset=utf-8',
-                        Authorization: `KakaoAK ${config.apiKey}`,
+                        Authorization: `KakaoAK ${config}`,
                     },
                 })
                 .then((response) => {
@@ -44,7 +44,6 @@ exports.readBooks = async (req, res) => {
             });
             return bookList;
         });
-    console.log(response);
     res.status(200).json({
         booksRead: response,
     });
@@ -118,14 +117,16 @@ exports.deleteBook = async (req, res) => {
 exports.loadBooksRead = async (req, res) => {
     authMiddleware(req, res);
     const username = req.query.username;
-    const response = await models.record_books_you_read.findAll({ where: { username } }).then(async (booksInfo) => {
-        let bookList = await searchBookByIsbn(booksInfo);
-        bookList.map((book, index) => {
-            book.startOfRead = booksInfo[index].dataValues.date_start_read;
-            book.finishOfRead = booksInfo[index].dataValues.createdAt;
+    const response = await models.record_books_you_read
+        .findAll({ where: { username } })
+        .then(async (booksInfo) => {
+            let bookList = await searchBookByIsbn(booksInfo);
+            bookList.map((book, index) => {
+                book.startOfRead = booksInfo[index].dataValues.date_start_read;
+                book.finishOfRead = booksInfo[index].dataValues.createdAt;
+            });
+            return bookList;
         });
-        return bookList;
-    });
     res.status(200).json({ message: '조회 성공', booksRead: response });
 };
 

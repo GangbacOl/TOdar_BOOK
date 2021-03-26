@@ -27,7 +27,7 @@ exports.signup = async (req, res) => {
             message: '회원가입 실패(이미 존재하는 계정)',
         });
     } else {
-        const encrypted = crypto.createHmac('sha1', config.secret).update(password).digest('base64');
+        const encrypted = crypto.createHmac('sha1', config).update(password).digest('base64');
         models.user
             .create({
                 account: id,
@@ -53,7 +53,7 @@ exports.signin = (req, res) => {
         res.status(400).json({
             message: '로그인 실패(정보 미기입)',
         });
-    const encrypted = crypto.createHmac('sha1', config.secret).update(password).digest('base64');
+    const encrypted = crypto.createHmac('sha1', config).update(password).digest('base64');
     models.user
         .findOne({
             where: { account: id },
@@ -77,7 +77,7 @@ exports.signin = (req, res) => {
                         _id: id,
                         username: response.dataValues.username,
                     },
-                    config.secret,
+                    config,
                     {
                         expiresIn: '5d',
                         issuer: 'localhost',

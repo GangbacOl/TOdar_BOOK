@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import SearchingItem from "../search/SearchingItem";
-import config from "../../config/config";
+import apiKey from "../../config/config";
 import "./style/SearchingArea.scss";
 
 const SearchingArea = ({ isLogin, username }) => {
@@ -18,7 +18,7 @@ const SearchingArea = ({ isLogin, username }) => {
             } = await axios.get(`https://dapi.kakao.com/v3/search/book?query=${title}`, {
                 headers: {
                     "Content-Type": "application/json; charset=utf-8",
-                    Authorization: `KakaoAK ${config.apiKey}`,
+                    Authorization: `KakaoAK ${apiKey}`,
                 },
             });
             setBooks(documents);
@@ -27,7 +27,6 @@ const SearchingArea = ({ isLogin, username }) => {
     };
 
     const checkIsNull = (book) => {
-        // title, author, contents, thumbnail중 데이터가 한개라도 ""(undefined가 아님)이라면 false를 리턴.
         if (book.title === "" || book.author === "" || book.contents === "" || book.thumbnail === "") return false;
         return true;
     };
