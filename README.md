@@ -1,25 +1,26 @@
-# todar-book에서 필요한 기능
+# todar-book
 
-- 책 정보(제목, 저자, 썸네일, 줄거리) 조회 ⭕️
-- 읽고 싶은 책 추가 ⭕️
-- 읽은 책들의 정보(읽기 시작한 날짜, 다 읽은 날짜) 조회 ⭕️
-- 책에서 읽은 목차들 체킹 ⭕️
-- 책의 목차 뷰를 모달로 구현 ⭕️
-- 책들의 진도율을 그래프로 구현 ❌
-- 책의 실제 목차 데이터 조회 ❌
-- 독서록 기능 구현 ❌
-- 읽은 목차들을 달력 뷰로 구현 ❌
+[Notion Link ✈](https://www.notion.so/Gangyeon-Jo-s-Portfolio-07db7894fda84255953a50945709f046?p=c271451591a545da8fc772c78c85fc2b)
 
-# todar-book에서 사용한 기술
+<center>
+  <img src="./images/image-1.png" width="60%">
+  <img src="./images/image-2.png" width="60%">
+  <img src="./images/image-3.png" width="60%">
+  <img src="./images/image-4.png" width="60%">
+  <img src="./images/image-5.png" width="60%">
+</center>
+<br />
 
-- **프론트엔드**
-  - React.js
-    - Redux
-    - Bootstrap
-- **백엔드**
-  - Node.js
-    - Express.js
-    - Sequelize
-    - jwt(JSON Web Token)
-- **데이터베이스**
-  - MySQL
+## Tech Stack
+
+-   **프론트엔드**
+    -   React.js
+        -   Redux
+        -   Bootstrap
+-   **백엔드**
+    -   Node.js
+        -   Express.js
+        -   Sequelize
+        -   jwt(JSON Web Token)
+-   **데이터베이스**
+    -   MySQL
