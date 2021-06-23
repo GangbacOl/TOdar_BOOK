@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap");
+
+.Login,
+.Register {
+    width: 100%;
+    text-align: center;
+}
+
+.Login,
+.Register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1400px;
+    margin: 100px auto;
+}
+
+.Login h1,
+.Register h1 {
+    font-weight: 100;
+    font-size: 4em;
+}
+
+.Login input,
+.Register input {
+    text-align: center;
+    width: 60%;
+    height: 50px;
+    margin: 20px 0;
+    font-size: 2em;
+    font-weight: 100;
+    border: none;
+    outline: none;
+}
+
+.Login input:focus,
+.Register input:focus {
+    -webkit-box-shadow: 3px 3px 10px -1px rgba(0, 0, 0, 0.43);
+    -moz-box-shadow: 3px 3px 10px -1px rgba(0, 0, 0, 0.43);
+    box-shadow: 3px 3px 10px -1px rgba(0, 0, 0, 0.43);
+    transition: all 0.2s;
+}
+
+.Login input::placeholder,
+.Register input::placeholder {
+    text-align: center;
+}
+
+.Login a,
+.Register a {
+    font-size: 1.3em;
+    text-decoration: none;
+    color: black;
+    margin-top: 50px;
+}
+
+.Login a:hover,
+.Register a:hover {
+    text-decoration: underline;
+}
+
+.Login .submit,
+.Register .submit {
+    margin-top: 30px;
+    outline: none;
+    width: 30%;
+    border: none;
+    background: none;
+    height: 40px;
+}
+
+.Login .submit:hover,
+.Register .submit:hover {
+    border-bottom: 1px solid black;
+    transition: 0.2s;
+}

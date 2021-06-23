@@ -1,0 +1,45 @@
+.BookList {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.booklist-container-first,
+.booklist-container-second {
+    width: 100%;
+}
+
+.booklist-container-first > input {
+    all: unset;
+    margin: 10px;
+    font-weight: 400;
+    font-size: 1.3em;
+}
+.booklist-container-first > input:hover {
+    text-decoration: underline;
+}
+
+.booklist-container-first > a {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    color: black;
+    font-size: 1.4em;
+}
+
+.booklist-container-first > a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+.booklist-container-second {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.booklist-container-second > p {
+    font-size: 1.4em;
+    margin-top: 70px;
+}

@@ -1,0 +1,35 @@
+.Header {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: #262626;
+    color: white;
+    margin: 0;
+}
+
+.Header h1 {
+    font-weight: 100;
+    font-size: 2.1em;
+}
+
+.Header div a {
+    margin: 15px;
+    text-decoration: none;
+    font-size: 1.1em;
+    color: white;
+}
+
+.Header div a:hover {
+    text-decoration: underline;
+}
+
+.Header div div input {
+    color: white;
+    background: transparent;
+    border-color: transparent;
+}
+
+.Header div div input:hover {
+    text-decoration: underline;
+}

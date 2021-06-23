@@ -1,0 +1,54 @@
+.SearchingArea {
+    width: 100%;
+    margin-top: 100px;
+    font-family: "Noto Sans KR", sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.SearchSide {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.SearchBox {
+    background: transparent;
+    outline: none;
+    border-color: transparent transparent black transparent;
+    border-width: 1px;
+    width: 30%;
+    font-size: 1em;
+    transition: 0.1s;
+}
+
+.SearchBtn {
+    padding: 7px 20px;
+    border-color: transparent;
+    outline: none;
+    font-size: 1.1em;
+    margin: 0 5px;
+    transition: 0.2s;
+    background: transparent;
+}
+.SearchBtn:hover {
+    border-color: transparent transparent black transparent;
+}
+.SearchBtn:active {
+    background: black;
+    color: white;
+}
+
+.SearchList {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.SearchList h2 {
+    font-weight: 200;
+    font-size: 1.5em;
+}

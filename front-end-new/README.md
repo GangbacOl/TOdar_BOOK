@@ -1,0 +1,1 @@
+Go to *[TOdar_BOOK notion](https://www.notion.so/digicon/TOdarBOOK-35015b968988488d8b6e0e9dd25d8405)*

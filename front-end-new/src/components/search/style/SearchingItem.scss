@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap");
+
+.SearchingContainer {
+    z-index: 0;
+    position: relative;
+    display: flex;
+    font-family: "Noto Sans KR", sans-serif;
+    width: 500px;
+    margin: 40px 20px;
+    background: white;
+    padding: 5px 10px;
+    -webkit-box-shadow: 3px 3px 10px -1px rgba(0, 0, 0, 0.43);
+    -moz-box-shadow: 3px 3px 10px -1px rgba(0, 0, 0, 0.43);
+    box-shadow: 3px 3px 10px -1px rgba(0, 0, 0, 0.43);
+}
+
+.SearchingContainer img {
+    margin-right: 30px;
+    margin-top: -40px;
+}
+
+.SearchingContainer h3 {
+    margin: 5px 10px;
+}
+
+.SearchingContainer span {
+    font-size: 0.9em;
+}
+
+.SearchingContainer p {
+    font-size: 0.8em;
+}
+
+.SearchingContainer input {
+    position: absolute;
+    bottom: -25px;
+    right: -20px;
+    margin: 10px;
+    background: white;
+    font-size: 0.9em;
+    width: 70px;
+    height: 30px;
+    outline: none;
+}
+
+.SearchingContainer input:active {
+    background: black;
+    color: white;
+}

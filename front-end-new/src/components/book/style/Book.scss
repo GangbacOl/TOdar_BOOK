@@ -1,0 +1,68 @@
+.Book {
+    margin: 10px 20px;
+    width: 60%;
+    min-width: 350px;
+    transition: all 0.3s;
+}
+
+.Book:hover {
+    -webkit-box-shadow: 3px 3px 10px -1px rgba(0, 0, 0, 0.43);
+    -moz-box-shadow: 3px 3px 10px -1px rgba(0, 0, 0, 0.43);
+    box-shadow: 3px 3px 10px -1px rgba(0, 0, 0, 0.43);
+}
+
+.book-container {
+    width: 100%;
+    padding: 10px;
+    max-height: 500px;
+}
+
+.book-container h3 {
+    margin: 5px 0 15px 0;
+    border-bottom: 1px solid black;
+}
+
+.book-container .main-contents {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.book-container .main-contents img {
+    max-height: 200px;
+}
+
+.book-container .main-contents .author-publisher-contents {
+    margin: 5px 20px 0 10px;
+}
+
+.book-container .main-contents .author-publisher-contents p {
+    margin-top: 10px;
+}
+
+.book-container .button-container {
+    width: 100%;
+}
+
+.book-container .button-container input {
+    all: unset;
+    width: 49%;
+    border: 1px solid black;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.book-container .button-container input:hover {
+    background: black;
+    color: white;
+    border: 1px solid white;
+}
+
+.progress {
+    background: white !important;
+}
+
+@media all and (max-width: 600px) {
+    .book-container .main-contents .author-publisher-contents p {
+        display: none;
+    }
+}
